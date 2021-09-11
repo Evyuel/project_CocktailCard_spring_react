@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  cocktailcardui:
+    build:
+      context: ./cocktailcardui
+      args: 
+        REACT_APP_MICRO_HOST_NAME: ${REACT_APP_MICRO_HOST_NAME}
+    ports:
+     - 3000:3000
+    networks:
+      - app_net
+  cocktailcardmicro:
+    build:
+      context: ./cocktailcardmicro
+    environment:
+      - DBHOST=${DBHOST}
+      - DBPORT=${DBPORT}
+      - DBUSER=${DBUSER}
+      - DBPASS=${DBPASS}
+      - JPA_LOGGING_LEVEL=${JPA_LOGGING_LEVEL}
+      - AOP_LOGGING_LEVEL=${AOP_LOGGING_LEVEL}
+    ports:
+     - 8080:8080
+     - 7687:7687
+    networks:
+      - app_net
+networks:
+  app_net: 
+    driver: bridge

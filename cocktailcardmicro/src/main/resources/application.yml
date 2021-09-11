@@ -1,0 +1,13 @@
+spring:
+  neo4j:
+    uri: neo4j://${DBHOST}:${DBPORT:7687}
+    authentication:
+      username: ${DBUSER}
+      password: ${DBPASS}
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          neo4j: ${JPA_LOGGING_LEVEL}
+    ru.dtimofeev.cocktailCard.logging: ${AOP_LOGGING_LEVEL}
