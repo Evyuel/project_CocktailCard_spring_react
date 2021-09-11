@@ -24,7 +24,7 @@ constructor(props) {
 toggleButtonState = () => {
         if (AuthenticationService.isUserLoggedIn()) {
           let url = "http://" + process.env.REACT_APP_MICRO_HOST_NAME + ":8080/api/cocktails";
-          if (this.cocktailName){
+          if (!this.cocktailName){
             url += "?";
             url = url + "name=" + this.state.cocktailName;
           }
